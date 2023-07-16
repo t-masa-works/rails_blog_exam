@@ -1,0 +1,30 @@
+<h1>ブログ一覧</h1>
+<p style="text-align: center;"><%= link_to "新しいブログを作成する", new_blog_path %></p>
+<h2><%= notice %></h2>
+
+<style>
+.table-margin {
+  border-spacing: 20px 20px;
+}
+
+.table-margin td {
+  border-bottom: solid 1px;
+}
+</style>
+
+<table class="table-margin">
+ <tr>
+  <th>タイトル</th>
+  <th>内容</th>
+ </tr>
+
+ <% @blogs.each do |blog| %>
+    <tr>
+     <td><%= blog.title %></td>
+     <td><%= blog.content%></td>
+     <td><%= link_to "ブログの詳細を確認する", blog_path(blog.id), data: {confirm: "タイトル #{blog.title} の詳細を確認しますか？"} %></td>
+     <td><%= link_to "ブログを編集する", edit_blog_path(blog.id), data: {confirm: "タイトル #{blog.title} を編集しますか？"} %></td>
+     <td><%= link_to "ブログを削除する", blog_path(blog.id), data: {confirm: "タイトル #{blog.title} を本当に削除してもよろしいですか？"}, method: :delete %></td>
+    </tr>
+<% end %>
+</table>

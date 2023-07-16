@@ -1,0 +1,24 @@
+<%= form_with(model:@blog,local:true ,url: choose_new_or_edit) do |form| %>
+   <% if @blog.errors.any? %>
+     <div id="error_explanation">
+      <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
+      <ul>
+          <% @blog.errors.full_messages.each do |msg| %>
+             <li><%= msg %></li>
+          <% end %>
+      </ul>
+  <% end %>
+  </div>
+  <div class="blog_title">
+     <%= form.label :title %></br>
+     <%= form.text_field :title%>
+  </div>
+  <div class="blog_content">
+     <%= form.label :content %></br>
+     <%= form.text_area :content %>
+  </div>
+
+  <%= form.submit "ブログを保存", data: {confirm: "ブログを保存してもいいですか？"} %>
+  <%= link_to "ブログ一覧に戻る", blogs_path %>
+<% end %>
+
